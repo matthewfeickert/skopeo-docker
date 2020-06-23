@@ -17,7 +17,11 @@ RUN apt-get -qq -y update && \
     apt-get -y autoremove && \
     rm -rf /var/lib/apt-get/lists/*
 
-RUN git clone --depth 1 https://github.com/containers/skopeo $GOPATH/src/github.com/containers/skopeo && \
+ARG VERSION_TAG=v1.1.0
+RUN git clone --depth 1 https://github.com/containers/skopeo \
+      --branch "${VERSION_TAG}" \
+      --single-branch \
+      $GOPATH/src/github.com/containers/skopeo && \
     cd $GOPATH/src/github.com/containers/skopeo && \
     make bin/skopeo && \
     mkdir -p /etc/containers && \
