@@ -30,7 +30,8 @@ RUN apt-get -qq -y update && \
         libgpgme-dev \
         libassuan-dev \
         libbtrfs-dev \
-        libdevmapper-dev && \
+        libdevmapper-dev \
+        sudo && \
     apt-get -y autoclean && \
     apt-get -y autoremove && \
     rm -rf /var/lib/apt-get/lists/*
