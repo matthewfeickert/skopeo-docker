@@ -23,10 +23,10 @@ RUN git clone --depth 1 https://github.com/containers/skopeo \
       --single-branch \
       $GOPATH/src/github.com/containers/skopeo && \
     cd $GOPATH/src/github.com/containers/skopeo && \
-    make bin/skopeo && \
+    make binary-local && \
     mkdir -p /etc/containers && \
     cp default-policy.json /etc/containers/policy.json && \
-    ./bin/skopeo --help
+    ./skopeo --help
 
 FROM base
 RUN apt-get -qq -y update && \
@@ -46,7 +46,7 @@ RUN useradd -m docker && \
     cp /root/.bashrc /home/docker/ && \
     chown -R --from=root docker /home/docker
 
-COPY --from=builder $GOPATH/src/github.com/containers/skopeo/bin/skopeo /usr/local/bin/
+COPY --from=builder $GOPATH/src/github.com/containers/skopeo/skopeo /usr/local/bin/
 COPY --from=builder $GOPATH/src/github.com/containers/skopeo/default-policy.json /etc/containers/policy.json
 
 WORKDIR /home/docker
