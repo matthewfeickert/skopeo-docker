@@ -43,6 +43,7 @@ RUN useradd -m docker && \
     chown -R --from=root docker /home/docker
 
 COPY --from=builder $GOPATH/src/github.com/containers/skopeo/bin/skopeo /usr/local/bin/
+COPY --from=builder $GOPATH/src/github.com/containers/skopeo/default-policy.json /etc/containers/policy.json
 
 WORKDIR /home/docker
 ENV HOME /home/docker
