@@ -29,8 +29,8 @@ jobs:
       with:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-        registry: docker.pkg.github.com
-        repository: matthewfeickert/skopeo-docker/skopeo-docker
+        registry: ghcr.io
+        repository: matthewfeickert/skopeo-docker
         dockerfile: Dockerfile
         tags: latest
     - name: Build and Publish to Registry with Release Tag
@@ -49,8 +49,8 @@ jobs:
       with:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-        registry: docker.pkg.github.com
-        repository: matthewfeickert/skopeo-docker/skopeo-docker
+        registry: ghcr.io
+        repository: matthewfeickert/skopeo-docker
         dockerfile: Dockerfile
         tags: latest,latest-stable
         tag_with_ref: true
